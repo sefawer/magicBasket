@@ -2,7 +2,7 @@
 FROM php:8.4.1-fpm
 
 # Set environment variables
-ENV APP_DIR /var/www/html
+ENV APP_DIR=/var/www/html
 
 # Install required PHP extensions and tools
 RUN apt-get update && apt-get install -y \
@@ -35,7 +35,8 @@ COPY supervisord.conf /etc/supervisord.conf
 
 # Expose necessary ports
 EXPOSE 80
-EXPOSE 9000
+EXPOSE 3306
+#EXPOSE 9000
 
 # Start supervisord to manage Nginx and PHP-FPM
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
